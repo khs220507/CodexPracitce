@@ -18,8 +18,8 @@ public sealed class ShellViewModel : ViewModelBase
         _currentPageTitle = DashboardViewModel.Title;
         _globalConnectionSummary = DashboardViewModel.ConnectionSummary;
 
-        Title = "Equipment Control Shell";
-        StatusMessage = "Architecture baseline";
+        Title = "Smart Factory Monitor";
+        StatusMessage = "Baseline operator interface";
 
         NavigateDashboardCommand = new RelayCommand(NavigateDashboard);
     }

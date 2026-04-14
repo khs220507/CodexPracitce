@@ -11,18 +11,26 @@ public sealed class DashboardViewModel : ViewModelBase
     private int _ngCount;
     private string _connectionSummary = string.Empty;
     private string _latestInspectionResult = string.Empty;
+    private string _equipmentStatus = string.Empty;
+    private string _lastInspectionTime = string.Empty;
+    private string _activeAlarm = string.Empty;
+    private string _lineName = string.Empty;
 
     public DashboardViewModel()
     {
         Title = "Dashboard";
-        StatusMessage = "Shell 구조 기준점";
+        StatusMessage = "Production line overview and equipment summary";
 
-        CurrentMode = SystemMode.Manual;
+        CurrentMode = SystemMode.Auto;
         TotalCount = 128;
         OkCount = 121;
         NgCount = 7;
-        ConnectionSummary = "Vision / IO / Robot mock connected";
-        LatestInspectionResult = "Latest result: OK";
+        ConnectionSummary = "Vision / IO / Robot connected";
+        LatestInspectionResult = "OK";
+        EquipmentStatus = "Running";
+        LastInspectionTime = "2026-04-14 21:48";
+        ActiveAlarm = "No active alarms";
+        LineName = "Front Assembly Line A";
     }
 
     public SystemMode CurrentMode
@@ -60,4 +68,30 @@ public sealed class DashboardViewModel : ViewModelBase
         get => _latestInspectionResult;
         set => SetProperty(ref _latestInspectionResult, value);
     }
+
+    public string EquipmentStatus
+    {
+        get => _equipmentStatus;
+        set => SetProperty(ref _equipmentStatus, value);
+    }
+
+    public string LastInspectionTime
+    {
+        get => _lastInspectionTime;
+        set => SetProperty(ref _lastInspectionTime, value);
+    }
+
+    public string ActiveAlarm
+    {
+        get => _activeAlarm;
+        set => SetProperty(ref _activeAlarm, value);
+    }
+
+    public string LineName
+    {
+        get => _lineName;
+        set => SetProperty(ref _lineName, value);
+    }
+
+    public double YieldRate => TotalCount == 0 ? 0 : (double)OkCount / TotalCount * 100;
 }

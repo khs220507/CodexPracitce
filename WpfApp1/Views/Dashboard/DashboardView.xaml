@@ -4,49 +4,308 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
-    <Grid Margin="24">
+    <Grid Margin="26">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="24" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <TextBlock FontSize="28"
-                       FontWeight="SemiBold"
-                       Text="{Binding Title}" />
-            <TextBlock Margin="0,8,0,0"
-                       Foreground="#666666"
-                       Text="{Binding StatusMessage}" />
-        </StackPanel>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="260" />
+            </Grid.ColumnDefinitions>
 
-        <UniformGrid Grid.Row="2" Columns="2" Rows="2">
-            <Border Margin="0,0,12,12" Padding="20" Background="#F2F4F8" CornerRadius="12">
+            <StackPanel Grid.Column="0">
+                <TextBlock FontSize="32"
+                           FontWeight="SemiBold"
+                           Foreground="#17263A"
+                           Text="{Binding LineName}" />
+                <TextBlock Margin="0,8,0,0"
+                           Foreground="#66788B"
+                           Text="{Binding StatusMessage}" />
+            </StackPanel>
+
+            <Border Grid.Column="1"
+                    Padding="18"
+                    Background="#132338"
+                    CornerRadius="18">
                 <StackPanel>
-                    <TextBlock FontSize="14" Foreground="#666666" Text="Mode" />
-                    <TextBlock Margin="0,8,0,0" FontSize="24" FontWeight="SemiBold" Text="{Binding CurrentMode}" />
+                    <TextBlock Foreground="#91A7BF"
+                               Text="Active Alarm" />
+                    <TextBlock Margin="0,8,0,0"
+                               FontSize="22"
+                               FontWeight="SemiBold"
+                               Foreground="White"
+                               Text="{Binding ActiveAlarm}" />
                 </StackPanel>
             </Border>
-            <Border Margin="0,0,0,12" Padding="20" Background="#F2F4F8" CornerRadius="12">
+        </Grid>
+
+        <UniformGrid Grid.Row="2" Columns="4">
+            <Border Margin="0,0,16,0" Padding="22" Background="White" CornerRadius="18">
                 <StackPanel>
-                    <TextBlock FontSize="14" Foreground="#666666" Text="Connection" />
-                    <TextBlock Margin="0,8,0,0" FontSize="18" FontWeight="SemiBold" Text="{Binding ConnectionSummary}" />
+                    <TextBlock Foreground="#718499" Text="Equipment Status" />
+                    <TextBlock Margin="0,10,0,0"
+                               FontSize="28"
+                               FontWeight="SemiBold"
+                               Foreground="#17263A"
+                               Text="{Binding EquipmentStatus}" />
                 </StackPanel>
             </Border>
-            <Border Margin="0,0,12,0" Padding="20" Background="#F2F4F8" CornerRadius="12">
+            <Border Margin="0,0,16,0" Padding="22" Background="White" CornerRadius="18">
                 <StackPanel>
-                    <TextBlock FontSize="14" Foreground="#666666" Text="Production" />
-                    <TextBlock Margin="0,8,0,0" FontSize="18" Text="{Binding TotalCount, StringFormat=Total: {0}}" />
-                    <TextBlock Margin="0,4,0,0" FontSize="18" Text="{Binding OkCount, StringFormat=OK: {0}}" />
-                    <TextBlock Margin="0,4,0,0" FontSize="18" Text="{Binding NgCount, StringFormat=NG: {0}}" />
+                    <TextBlock Foreground="#718499" Text="Operation Mode" />
+                    <TextBlock Margin="0,10,0,0"
+                               FontSize="28"
+                               FontWeight="SemiBold"
+                               Foreground="#17263A"
+                               Text="{Binding CurrentMode}" />
                 </StackPanel>
             </Border>
-            <Border Padding="20" Background="#F2F4F8" CornerRadius="12">
+            <Border Margin="0,0,16,0" Padding="22" Background="White" CornerRadius="18">
                 <StackPanel>
-                    <TextBlock FontSize="14" Foreground="#666666" Text="Latest Inspection" />
-                    <TextBlock Margin="0,8,0,0" FontSize="18" FontWeight="SemiBold" Text="{Binding LatestInspectionResult}" />
+                    <TextBlock Foreground="#718499" Text="Yield Rate" />
+                    <TextBlock Margin="0,10,0,0"
+                               FontSize="28"
+                               FontWeight="SemiBold"
+                               Foreground="#17263A"
+                               Text="{Binding YieldRate, StringFormat={}{0:F1}%}" />
+                </StackPanel>
+            </Border>
+            <Border Padding="22" Background="White" CornerRadius="18">
+                <StackPanel>
+                    <TextBlock Foreground="#718499" Text="Last Inspection" />
+                    <TextBlock Margin="0,10,0,0"
+                               FontSize="22"
+                               FontWeight="SemiBold"
+                               Foreground="#17263A"
+                               Text="{Binding LastInspectionTime}" />
                 </StackPanel>
             </Border>
         </UniformGrid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.3*" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
+                        Padding="24"
+                        Background="#16263A"
+                        CornerRadius="20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel>
+                            <TextBlock Foreground="#95AAC0" Text="Total" />
+                            <TextBlock Margin="0,10,0,0"
+                                       FontSize="34"
+                                       FontWeight="SemiBold"
+                                       Foreground="White"
+                                       Text="{Binding TotalCount}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Foreground="#95AAC0" Text="OK" />
+                            <TextBlock Margin="0,10,0,0"
+                                       FontSize="34"
+                                       FontWeight="SemiBold"
+                                       Foreground="#55D6B7"
+                                       Text="{Binding OkCount}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Foreground="#95AAC0" Text="NG" />
+                            <TextBlock Margin="0,10,0,0"
+                                       FontSize="34"
+                                       FontWeight="SemiBold"
+                                       Foreground="#FF8B78"
+                                       Text="{Binding NgCount}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="2"
+                        Padding="24"
+                        Background="White"
+                        CornerRadius="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="18" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="14" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock FontSize="20"
+                                   FontWeight="SemiBold"
+                                   Foreground="#17263A"
+                                   Text="Connection Overview" />
+
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Margin="0,0,12,0"
+                                    Padding="16"
+                                    Background="#F4F7FB"
+                                    CornerRadius="16">
+                                <StackPanel>
+                                    <TextBlock Foreground="#718499" Text="Vision" />
+                                    <TextBlock Margin="0,8,0,0"
+                                               FontSize="18"
+                                               FontWeight="SemiBold"
+                                               Foreground="#17263A"
+                                               Text="Connected" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="1"
+                                    Margin="0,0,12,0"
+                                    Padding="16"
+                                    Background="#F4F7FB"
+                                    CornerRadius="16">
+                                <StackPanel>
+                                    <TextBlock Foreground="#718499" Text="I/O" />
+                                    <TextBlock Margin="0,8,0,0"
+                                               FontSize="18"
+                                               FontWeight="SemiBold"
+                                               Foreground="#17263A"
+                                               Text="Stable" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="2"
+                                    Padding="16"
+                                    Background="#F4F7FB"
+                                    CornerRadius="16">
+                                <StackPanel>
+                                    <TextBlock Foreground="#718499" Text="Robot" />
+                                    <TextBlock Margin="0,8,0,0"
+                                               FontSize="18"
+                                               FontWeight="SemiBold"
+                                               Foreground="#17263A"
+                                               Text="Ready" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <Border Grid.Row="4"
+                                Padding="18"
+                                Background="#E9FFF8"
+                                CornerRadius="16">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Left"
+                                           FontWeight="SemiBold"
+                                           Foreground="#148B71"
+                                           Text="Live Summary" />
+                                <TextBlock DockPanel.Dock="Right"
+                                           Foreground="#148B71"
+                                           Text="{Binding ConnectionSummary}" />
+                            </DockPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Border Grid.Column="2"
+                    Padding="24"
+                    Background="White"
+                    CornerRadius="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="18" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="18" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock FontSize="20"
+                               FontWeight="SemiBold"
+                               Foreground="#17263A"
+                               Text="Latest Inspection Result" />
+
+                    <Border Grid.Row="2"
+                            Padding="18"
+                            Background="#F4F7FB"
+                            CornerRadius="16">
+                        <StackPanel>
+                            <TextBlock Foreground="#718499" Text="Current Result" />
+                            <TextBlock Margin="0,10,0,0"
+                                       FontSize="32"
+                                       FontWeight="SemiBold"
+                                       Foreground="#17263A"
+                                       Text="{Binding LatestInspectionResult}" />
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel Grid.Row="4">
+                        <Border Margin="0,0,0,12"
+                                Padding="16"
+                                Background="#F8FAFC"
+                                CornerRadius="14">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Left"
+                                           FontWeight="SemiBold"
+                                           Foreground="#17263A"
+                                           Text="Inspection Time" />
+                                <TextBlock DockPanel.Dock="Right"
+                                           Foreground="#5D7084"
+                                           Text="{Binding LastInspectionTime}" />
+                            </DockPanel>
+                        </Border>
+                        <Border Margin="0,0,0,12"
+                                Padding="16"
+                                Background="#F8FAFC"
+                                CornerRadius="14">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Left"
+                                           FontWeight="SemiBold"
+                                           Foreground="#17263A"
+                                           Text="Alarm Status" />
+                                <TextBlock DockPanel.Dock="Right"
+                                           Foreground="#5D7084"
+                                           Text="{Binding ActiveAlarm}" />
+                            </DockPanel>
+                        </Border>
+                        <Border Padding="16"
+                                Background="#F8FAFC"
+                                CornerRadius="14">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Left"
+                                           FontWeight="SemiBold"
+                                           Foreground="#17263A"
+                                           Text="Screen Purpose" />
+                                <TextBlock DockPanel.Dock="Right"
+                                           Foreground="#5D7084"
+                                           Text="Basic monitoring UI" />
+                            </DockPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
